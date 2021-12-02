@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 
+Console.WriteLine("--------------------------------------------1");
 var x = 0;
 var d = 0;
 
