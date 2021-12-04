@@ -1,3 +1,33 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace Aoc2021
+{
+  [TestClass]
+  public class D01
+  {
+    [TestMethod]
+    public void P1()
+    {
+      /*
+ select sum(isInc)
+ FROM
+ (
+ select b.*, case when val > prev then 1 else 0 end isInc
+ from
+ (
+   select d1.*
+   ,LAG (val) OVER (ORDER BY id) AS prev  
+   FROM d1
+ ) b
+ -- order by b.id
+ ) m    
+       */
+    }
+
+    [TestMethod]
+    public void P2()
+    {
+      /*
 
 select sum(isInc)
 from
@@ -21,3 +51,9 @@ from
   ) s3
 ) s4
 
+
+       */
+
+    }
+  }
+}

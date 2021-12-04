@@ -4,6 +4,7 @@ create table d1
   val int
 );
 
+----sample
 delete from d1;
 
 insert into d1(val)
@@ -21,20 +22,8 @@ insert into d1(val)
 );  
 
 
-select sum(isInc)
-FROM
-(
-select b.*, case when val > prev then 1 else 0 end isInc
-from
-(
-  select d1.*
-  ,LAG (val) OVER (ORDER BY id) AS prev  
-  FROM d1
-) b
--- order by b.id
-) m
 
-
+----real
 delete from d1;
 
 insert into d1(val)
