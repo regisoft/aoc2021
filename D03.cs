@@ -11,7 +11,7 @@ namespace Aoc2021
   public class D03
   {
     const int BITCOUNT = 5;  // for sample  use  5  else 12
-    const string INPUTNAME = $"{nameof(D03)}_sample.txt"; // sample.txt   OR  .txt 
+    const string INPUTNAME = $"{nameof(D03)}_sample.txt"; // _sample.txt   OR  .txt 
 
     [TestMethod]
     public void P1()
