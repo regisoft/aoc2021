@@ -23,7 +23,7 @@ namespace Aoc2021
       for (var i = 0; i < rslt.Length; i++)
       {
         rslt[i] = GetEnum(i).Count(p => p == '1');
-        Debug.Write(rslt[i]+",");
+        Debug.Write(rslt[i] + ",");
         bin += rslt[i] > cnt / 2 ? "1" : "0";
       }
 

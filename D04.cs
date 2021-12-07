@@ -36,7 +36,7 @@ namespace Aoc2021
       var boardWins = new bool[boards.Count];
       foreach (var bingo in bingos)
       {
-        for (int b = 0;b < boardWins.Length;b++)
+        for (int b = 0; b < boardWins.Length; b++)
         {
           var board = boards[b];
           for (int x = 0; x < 5; x++)
@@ -133,23 +133,5 @@ namespace Aoc2021
 
       return boards;
     }
-
-    /*
-    private void DumpBoard(int[,] board)
-    {
-      //Debug.Write(System.Text.Json.JsonSerializer.Serialize(boards));
-
-      for (int x = 0; x < 5; x++)
-      {
-        var line = string.Empty;
-        for (int y = 0; y < 5; y++)
-        {
-          line += " " + board[x, y];
-        }
-
-        Debug.WriteLine(line);
-      }
-    }
-    */
   }
 }
