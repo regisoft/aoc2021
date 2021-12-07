@@ -10,61 +10,81 @@ namespace Aoc2021
   [TestClass]
   public class D06
   {
-    const string INPUTNAME = $"{nameof(D06)}.txt"; // _sample.txt   OR  .txt 
+    const string INPUTNAME = $"{nameof(D06)}_sample.txt"; // _sample.txt   OR  .txt 
 
     [TestMethod]
     public void P1()
     {
-      int cnt = Calc(80);
+      var cnt = Calc(80);
       Assert.AreEqual(5934, cnt);  // 26 for 18 days
     }
 
     [TestMethod]
     public void P2()
     {
-      int cnt = Calc(256);
+      var cnt = Calc(256);
       Assert.AreEqual(5934, cnt);  // 26 for 18 days
     }
 
-    private static int Calc(int dayCnt)
+    private static long Calc(int dayCnt)
     {
-      var data = File.ReadAllText(INPUTNAME).Split(',').Select(n => new Fish(Convert.ToInt32(n))).ToList();
+      var input = File.ReadAllText(INPUTNAME).Split(',').Select(n => Convert.ToByte(n)).ToList();
+
+      //2147483591  max size of byte array is 2GB since it uses an int for indexing.
+      //26984457539 already the sample is bigger 
+
+      var fishes = new byte[2147483591];
+
+      long last = input.Count-1;
+      for (int i = 0; i < input.Count; i++)
+      {
+        fishes[i] = input[i];
+      }
+
       for (int day = 1; day <= dayCnt; day++)
       {
         // Each day, a 0 becomes a 6 and adds a new 8 to the end of the list,
         // while each other number decreases by 1 if it was present at the start of the day.
         int cntNewChilds = 0;
-        data.ForEach(fish =>
-        {
-          if (fish.DaysBeforeBirth == 0)
+        for (long fishIdx = 0; fishIdx <= last; fishIdx++)
+        { 
+          if (fishes[fishIdx] == 0)
           {
             cntNewChilds++;
-            fish.DaysBeforeBirth = 6;
+            fishes[fishIdx] = 6;
           }
-          else fish.DaysBeforeBirth--;
-        });
+          else fishes[fishIdx]--;
+        };
 
         for (int i = 0; i < cntNewChilds; i++)
         {
-          data.Add(new Fish(8));
+          last++;
+          fishes[last] = 8;
         }
 
-        // dump
-        // data.ForEach(fish => Console.Write(fish.DaysBeforeBirth));
-        // Console.WriteLine();
+        //--- dump -->>
+        /*
+        for (long fishIdx = 0; fishIdx <= last; fishIdx++)
+        {
+          Console.Write(fishes[fishIdx] + ",");
+        }
+
+        Console.WriteLine();
+        */
+        //--- dump --<<
       }
 
-      return data.Count;
+      return last + 1;
     }
 
     private class Fish
     {
-      public Fish(int start)
+      public Fish(byte start)
       {
         DaysBeforeBirth = start;
       }
 
-      public int DaysBeforeBirth { get; set; }
+      public byte DaysBeforeBirth { get; set; }
     }
   }
 }
