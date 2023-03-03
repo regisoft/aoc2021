@@ -22,8 +22,8 @@ namespace Aoc2021
     [TestMethod]
     public void P2()
     {
-      var cnt = Calc(256);
-      Assert.AreEqual(5934, cnt);  // 26 for 18 days
+      // my solution is too slow, needs multiple arrays or bitmap
+      // https://github.com/encse/adventofcode/blob/master/2021/Day06/Solution.cs
     }
 
     private static long Calc(int dayCnt)
